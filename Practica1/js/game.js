@@ -232,12 +232,12 @@ var levels = {
                 { type: "ground", name: "wood", x: 190, y: 390, width: 30, height: 80, isStatic: true },
                 { type: "block", name: "wood", x: 500, y: 380, angle: 90, width: 100, height: 25 },
                 { type: "block", name: "glass", x: 500, y: 280, angle: 90, width: 100, height: 25 },
-                { type: "villain", name: "burger", x: 500, y: 205, calories: 590 },
+                { type: "villain", name: "egg", x: 500, y: 205, calories: 590 },
                 { type: "block", name: "wood", x: 800, y: 380, angle: 90, width: 100, height: 25 },
                 { type: "block", name: "glass", x: 800, y: 280, angle: 90, width: 100, height: 25 },
-                { type: "villain", name: "fries", x: 800, y: 205, calories: 420 },
-                { type: "hero", name: "orange", x: 80, y: 405 },
-                { type: "hero", name: "apple", x: 140, y: 405 }
+                { type: "villain", name: "metal", x: 800, y: 205, calories: 420 },
+                { type: "hero", name: "sonic", x: 80, y: 405 },
+                { type: "hero", name: "amy", x: 140, y: 405 }
             ]
         },
         {
@@ -251,13 +251,13 @@ var levels = {
                 { type: "block", name: "wood", x: 650, y: 320, angle: 0, width: 120, height: 5 },
                 
 
-                { type: "villain", name: "fries", x: 650, y: 320, calories: 420 },
+                { type: "villain", name: "metal", x: 650, y: 320, calories: 420 },
 
                 { type: "block", name: "wood", x: 800, y: 380, angle: 90, width: 100, height: 25 },
-                { type: "villain", name: "burger", x: 800, y: 250, calories: 590 },
+                { type: "villain", name: "egg", x: 800, y: 250, calories: 590 },
 
-                { type: "hero", name: "orange", x: 80, y: 405 },
-                { type: "hero", name: "apple", x: 140, y: 405 },
+                { type: "hero", name: "sonic", x: 80, y: 405 },
+                { type: "hero", name: "amy", x: 140, y: 405 },
 
                 
             ]
@@ -277,7 +277,7 @@ var levels = {
           { type: "block", name: "wood", x: 350, y: 340, width: 80, height: 20 }, // techo
 
           // Villano dentro del cubo izquierdo
-          { type: "villain", name: "fries", x: 350, y: 370, calories: 420 },
+          { type: "villain", name: "metal", x: 350, y: 370, calories: 420 },
 
           // Cubo derecho: paredes y techo
           { type: "block", name: "wood", x: 670, y: 380, width: 5, height: 80 }, // pared izquierda
@@ -285,18 +285,18 @@ var levels = {
           { type: "block", name: "wood", x: 700, y: 340, width: 80, height: 10 }, // techo
 
           // Villano dentro del cubo derecho
-          { type: "villain", name: "fries", x: 700, y: 370, calories: 420 },
+          { type: "villain", name: "metal", x: 700, y: 370, calories: 420 },
 
           // Puerta central reforzada con villano principal
           { type: "ground", name: "wood", x: 500, y: 390, width: 140, height: 20 },
           { type: "block", name: "wood", x: 500, y: 350, width: 140, height: 60 }, // pared central
-          { type: "villain", name: "burger", x: 500, y: 320, calories: 590 },
+          { type: "villain", name: "egg", x: 500, y: 320, calories: 590 },
 
           // Héroes (frutas)
-          { type: "hero", name: "orange", x: 80, y: 405 },
-          { type: "hero", name: "apple", x: 140, y: 405 },
-          { type: "hero", name: "strawberry", x: 200, y: 405 },
-          { type: "hero", name: "orange", x: 260, y: 405 }
+          { type: "hero", name: "sonic", x: 80, y: 405 },
+          { type: "hero", name: "amy", x: 140, y: 405 },
+          { type: "hero", name: "rojo", x: 200, y: 405 },
+          { type: "hero", name: "amarillo", x: 260, y: 405 }
         ]
     }
     ],
@@ -366,12 +366,13 @@ var entities = {
         "glass": { fullHealth: 100, density: 2.4, friction: 0.4, restitution: 0.15 },
         "wood": { fullHealth: 500, density: 0.7, friction: 0.4, restitution: 0.4 },
         "dirt": { density: 3.0, friction: 1.5, restitution: 0.2 },
-        "orange": { shape: "circle", fullHealth: 4000, radius: 20, density: 1, friction: 0.5, restitution: 0.4 },
-        "apple": { shape: "circle", fullHealth: 4000, radius: 20, density: 1, friction: 0.5, restitution: 0.4 },
-        "strawberry": { shape: "circle", fullHealth: 4000, radius: 18, density: 1, friction: 0.5, restitution: 0.4 },
-        "burger": { shape: "circle", fullHealth: 30, radius: 23, density: 1, friction: 0.5, restitution: 0.4 },
-        "fries": { shape: "circle", fullHealth: 15, radius: 18, density: 1, friction: 0.5, restitution: 0.4 },
-        "sodacan": { shape: "circle", fullHealth: 50, radius: 20, density: 1, friction: 0.5, restitution: 0.4 }
+        "sonic": { shape: "circle", fullHealth: 4000, radius: 20, density: 1, friction: 0.5, restitution: 0.4 },
+        "amy": { shape: "circle", fullHealth: 4000, radius: 20, density: 1, friction: 0.5, restitution: 0.4 },
+        "rojo": { shape: "circle", fullHealth: 4000, radius: 18, density: 1, friction: 0.5, restitution: 0.4 },
+        "amarillo": { shape: "circle", fullHealth: 4000, radius: 18, density: 1, friction: 0.5, restitution: 0.4 },
+        "egg": { shape: "circle", fullHealth: 30, radius: 23, density: 1, friction: 0.5, restitution: 0.4 },
+        "metal": { shape: "circle", fullHealth: 15, radius: 18, density: 1, friction: 0.5, restitution: 0.4 },
+        
     },
 
     create: function(entity) {
@@ -636,7 +637,7 @@ var game = {
   },
 
   loadSounds: function (onload) {
-    game.backgroundMusic = loader.loadSound("audio/gurdonark-kindergarten");
+    game.backgroundMusic = loader.loadSound("audio/Sonic");
     game.slingshotReleasedSound = loader.loadSound("audio/released");
     game.bounceSound = loader.loadSound("audio/bounce");
     game.breakSound = {
