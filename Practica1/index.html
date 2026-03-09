@@ -17,24 +17,24 @@
       <canvas id="gamecanvas" width="640" height="480" class="gamelayer"></canvas>
 
       <div id="scorescreen" class="gamelayer">
-        <img id="togglemusic" src="images/icons/sound.png" alt="Toggle Music" onclick="game.toggleBackgroundMusic()">
-        <img src="images/icons/prev.png" alt="Restart Level" onclick="game.restartLevel()">
-        <button id="pausebtn" class="hudbtn" onclick="game.togglePause()">⏸</button>
+        <button id="togglemusic" class="hudbtn sound-on" onclick="game.toggleBackgroundMusic()"></button>
+        <button class="hudbtn" onclick="game.restartLevel()">⏪</button>
+        <button id="pausebtn" class="hudbtn" onclick="game.togglePause()">&#10074;&#10074;</button>
         <span id="score">Score: 0</span>
       </div>
 
       <div id="gamestartscreen" class="gamelayer">
-        <img src="images/icons/play.png" alt="Play Game" onclick="game.playGame()"><br>
+        <button class="hudbtn playbtn" onclick="game.playGame()">START</button><br>
       </div>
 
       <div id="levelselectscreen" class="gamelayer">
         <div id="difficultyPanel">
-            <span id="difficultyLabel" class="difficultyLabel">NORMAL</span>
+            
             <span>Dificultad:</span>
             <button class="hudbtn" onclick="game.setDifficulty('easy')">Easy</button>
             <button class="hudbtn" onclick="game.setDifficulty('normal')">Normal</button>
             <button class="hudbtn" onclick="game.setDifficulty('hard')">Hard</button>
-            <span id="difficultyLabel">NORMAL</span>
+            <span id="difficultyLabel" class="difficultyLabel">NORMAL</span>
         </div>
 
         <div id="levelButtons"></div>
@@ -47,15 +47,9 @@
       <div id="endingscreen" class="gamelayer">
         <div>
           <p id="endingmessage">The Level Is Over Message</p>
-          <p id="playcurrentlevel" class="endingoption" onclick="game.restartLevel()">
-            <img src="images/icons/prev.png" alt="Replay">Replay Current Level
-          </p>
-          <p id="playnextlevel" class="endingoption" onclick="game.startNextLevel()">
-            <img src="images/icons/next.png" alt="Next">Play Next Level
-          </p>
-          <p id="returntolevelscreen" class="endingoption" onclick="game.showLevelScreen()">
-            <img src="images/icons/return.png" alt="Return">Return to Level Screen
-          </p>
+          <button class="endingbtn" onclick="game.restartLevel()">⟲ Replay Current Level</button>
+          <button id="playnextlevel" class="endingbtn" onclick="game.startNextLevel()">▶ Play Next Level</button>
+          <button class="endingbtn" onclick="game.showLevelScreen()">↩ Return to Level Screen</button>
         </div>
       </div>
 

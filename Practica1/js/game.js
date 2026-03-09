@@ -13,7 +13,7 @@ var b2ContactListener = Box2D.Dynamics.b2ContactListener;
 var loader = {
     loaded: true,
     loadedCount: 0,
-    totalCount: 0,
+    totalCount: 0, 
     soundFileExtn: "",
     onload: null,
 
@@ -85,41 +85,41 @@ var loader = {
         return audio;
         },
 
-itemLoaded: function(ev) {
-  if (ev && ev.target && ev.type) {
-    try { ev.target.removeEventListener(ev.type, loader.itemLoaded, false); } catch(e) {}
-  }
-
-  loader.loadedCount++;
-
-  var loadingMsg = document.getElementById("loadingmessage");
-  if (loadingMsg) {
-    loadingMsg.innerHTML = "Loaded " + loader.loadedCount + " of " + loader.totalCount;
-  }
-
-  if (loader.loadedCount === loader.totalCount) {
-    loader.loaded = true;
-
-    // Resetea contadores para futuras cargas
-    loader.loadedCount = 0;
-    loader.totalCount = 0;
-
-    // Oculta pantalla de carga
-    if (game.hideScreen) game.hideScreen("loadingscreen");
-    else {
-      var ls = document.getElementById("loadingscreen");
-      if (ls) ls.style.display = "none";
+  itemLoaded: function(ev) {
+    if (ev && ev.target && ev.type) {
+      try { ev.target.removeEventListener(ev.type, loader.itemLoaded, false); } catch(e) {}
     }
 
-    // Llama onload si existe
-    if (loader.onload) {
-      var onload = loader.onload;
-      loader.onload = null;
-      onload();
+    loader.loadedCount++;
+
+    var loadingMsg = document.getElementById("loadingmessage");
+    if (loadingMsg) {
+      loadingMsg.innerHTML = "Loaded " + loader.loadedCount + " of " + loader.totalCount;
+    }
+
+    if (loader.loadedCount === loader.totalCount) {
+      loader.loaded = true;
+
+      // Resetea contadores para futuras cargas
+      loader.loadedCount = 0;
+      loader.totalCount = 0;
+
+      // Oculta pantalla de carga
+      if (game.hideScreen) game.hideScreen("loadingscreen");
+      else {
+        var ls = document.getElementById("loadingscreen");
+        if (ls) ls.style.display = "none";
+      }
+
+      // Llama onload si existe
+      if (loader.onload) {
+        var onload = loader.onload;
+        loader.onload = null;
+        onload();
+      }
     }
   }
-}
-};
+  };
 
 // MOUSE CORREGIDO
 var mouse = {
@@ -225,8 +225,7 @@ var mouse = {
 var levels = {
     data: [
         {
-            background: "clouds-background",
-            foreground: "desert-foreground",
+            background: "desert-sonic",
             entities: [
                 { type: "ground", name: "dirt", x: 500, y: 440, width: 1000, height: 20, isStatic: true },
                 { type: "ground", name: "wood", x: 190, y: 390, width: 30, height: 80, isStatic: true },
@@ -237,12 +236,11 @@ var levels = {
                 { type: "block", name: "glass", x: 800, y: 280, angle: 90, width: 100, height: 25 },
                 { type: "villain", name: "metal", x: 800, y: 205, calories: 420 },
                 { type: "hero", name: "sonic", x: 80, y: 405 },
-                { type: "hero", name: "amy", x: 140, y: 405 }
+                { type: "hero", name: "rojo", x: 200, y: 405 },
             ]
         },
         {
-            background: "clouds-background",
-            foreground: "desert-foreground",
+            background: "desert-sonic",
             entities: [
                 { type: "ground", name: "dirt", x: 500, y: 440, width: 1000, height: 20, isStatic: true },
                 { type: "ground", name: "wood", x: 190, y: 390, width: 30, height: 80, isStatic: true },
@@ -256,17 +254,16 @@ var levels = {
                 { type: "block", name: "wood", x: 800, y: 380, angle: 90, width: 100, height: 25 },
                 { type: "villain", name: "egg", x: 800, y: 250, calories: 590 },
 
-                { type: "hero", name: "sonic", x: 80, y: 405 },
+                { type: "hero", name: "amarillo", x: 260, y: 405 },
                 { type: "hero", name: "amy", x: 140, y: 405 },
 
                 
             ]
         },
     {
-        background: "clouds-background",
-            foreground: "desert-foreground",
+        background: "desert-sonic",
         entities: [
-          // Suelo base
+          // Suelo
           { type: "ground", name: "dirt", x: 500, y: 440, width: 1000, height: 20, isStatic: true },
           { type: "ground", name: "wood", x: 190, y: 390, width: 30, height: 80, isStatic: true },
           // Plataformas principales para sostener estructuras
@@ -285,14 +282,12 @@ var levels = {
           { type: "block", name: "wood", x: 700, y: 340, width: 80, height: 10 }, // techo
 
           // Villano dentro del cubo derecho
-          { type: "villain", name: "metal", x: 700, y: 370, calories: 420 },
+          { type: "villain", name: "metal", x: 700, y: 380, calories: 420 },
 
           // Puerta central reforzada con villano principal
-          { type: "ground", name: "wood", x: 500, y: 390, width: 140, height: 20 },
-          { type: "block", name: "wood", x: 500, y: 350, width: 140, height: 60 }, // pared central
           { type: "villain", name: "egg", x: 500, y: 320, calories: 590 },
 
-          // Héroes (frutas)
+          // Héroes 
           { type: "hero", name: "sonic", x: 80, y: 405 },
           { type: "hero", name: "amy", x: 140, y: 405 },
           { type: "hero", name: "rojo", x: 200, y: 405 },
@@ -342,7 +337,6 @@ var levels = {
         var level = levels.data[number];
 
         game.currentLevel.backgroundImage = loader.loadImage("images/backgrounds/" + level.background + ".png");
-        game.currentLevel.foregroundImage = loader.loadImage("images/backgrounds/" + level.foreground + ".png");
         game.slingshotImage = loader.loadImage("images/slingshot.png");
         game.slingshotFrontImage = loader.loadImage("images/slingshot-front.png");
 
@@ -366,12 +360,12 @@ var entities = {
         "glass": { fullHealth: 100, density: 2.4, friction: 0.4, restitution: 0.15 },
         "wood": { fullHealth: 500, density: 0.7, friction: 0.4, restitution: 0.4 },
         "dirt": { density: 3.0, friction: 1.5, restitution: 0.2 },
-        "sonic": { shape: "circle", fullHealth: 4000, radius: 20, density: 1, friction: 0.5, restitution: 0.4 },
-        "amy": { shape: "circle", fullHealth: 4000, radius: 20, density: 1, friction: 0.5, restitution: 0.4 },
-        "rojo": { shape: "circle", fullHealth: 4000, radius: 18, density: 1, friction: 0.5, restitution: 0.4 },
-        "amarillo": { shape: "circle", fullHealth: 4000, radius: 18, density: 1, friction: 0.5, restitution: 0.4 },
-        "egg": { shape: "circle", fullHealth: 30, radius: 23, density: 1, friction: 0.5, restitution: 0.4 },
-        "metal": { shape: "circle", fullHealth: 15, radius: 18, density: 1, friction: 0.5, restitution: 0.4 },
+        "sonic": { shape: "circle", fullHealth: 4000, radius: 22, density: 1, friction: 0.5, restitution: 0.4 },
+        "amy": { shape: "circle", fullHealth: 4000, radius: 22, density: 1, friction: 0.5, restitution: 0.4 },
+        "rojo": { shape: "circle", fullHealth: 4000, radius: 22, density: 1, friction: 0.5, restitution: 0.4 },
+        "amarillo": { shape: "circle", fullHealth: 4000, radius: 22, density: 1, friction: 0.5, restitution: 0.4 },
+        "egg": { shape: "circle", fullHealth: 30, radius: 22, density: 1, friction: 0.5, restitution: 0.4 },
+        "metal": { shape: "circle", fullHealth: 15, radius: 22, density: 1, friction: 0.5, restitution: 0.4 },
         
     },
 
@@ -525,6 +519,7 @@ var box2d = {
 
 // GAME (objeto principal del juego)
 var game = {
+  musicMuted: false,
   canvas: null,
   context: null,
   scale: 1,
@@ -561,21 +556,21 @@ var game = {
       game.impulseScaleFactor = 0.7;
       game.wind = 0.0;
       game.heroDamping = 0;
-      game.difficultyHealthFactor = 0.75;
+      game.difficultyHealthFactor = 1;
     }
 
     if (level === "normal") {
       game.impulseScaleFactor = 0.7;
       game.wind = 1.5;
       game.heroDamping = 1.5;
-      game.difficultyHealthFactor = 1.0;
+      game.difficultyHealthFactor = 1.5;
     }
 
     if (level === "hard") {
       game.impulseScaleFactor = 0.9;
       game.wind = 3.0;
       game.heroDamping = 1.75;
-      game.difficultyHealthFactor = 1.5;
+      game.difficultyHealthFactor = 2.5;
     }
 
     var d = document.getElementById("difficultyLabel");
@@ -600,7 +595,7 @@ var game = {
     game.paused = !game.paused;
 
     var btn = document.getElementById("pausebtn");
-    if (btn) btn.textContent = game.paused ? "▶" : "⏸";
+    if (btn) btn.innerHTML = game.paused ? "&#9658;" : "&#10074;&#10074;";
 
     if (game.paused) {
       if (game.animationFrame) window.cancelAnimationFrame(game.animationFrame);
@@ -608,7 +603,7 @@ var game = {
     } else {
       game.lastUpdateTime = undefined; // evita salto de física
       game.animationFrame = window.requestAnimationFrame(game.animate);
-      if (game.backgroundMusic && game.backgroundMusic.paused) {
+      if (!game.musicMuted && game.backgroundMusic && game.backgroundMusic.paused) {
         var p = game.backgroundMusic.play();
         if (p && p.catch) p.catch(function () {});
       }
@@ -664,27 +659,34 @@ var game = {
   },
 
   toggleBackgroundMusic: function () {
-    if (!game.backgroundMusic) return;
 
-    if (game.backgroundMusic.paused) {
-      var p = game.backgroundMusic.play();
-      if (p && p.catch) p.catch(function () {});
-    } else {
-      game.backgroundMusic.pause();
-    }
-    game.setBackgroundMusicButton();
-  },
+  if (!game.backgroundMusic) return;
 
-  setBackgroundMusicButton: function () {
-    var toggleImage = document.getElementById("togglemusic");
-    if (toggleImage) {
-      if (game.backgroundMusic && game.backgroundMusic.paused) {
-        toggleImage.src = "images/icons/nosound.png";
-      } else {
-        toggleImage.src = "images/icons/sound.png";
-      }
-    }
-  },
+  game.musicMuted = !game.musicMuted;
+
+  if (game.musicMuted) {
+    game.backgroundMusic.pause();
+  } else {
+    var p = game.backgroundMusic.play();
+    if (p && p.catch) p.catch(function(){});
+  }
+
+  game.setBackgroundMusicButton();
+},
+
+    setBackgroundMusicButton: function () {
+  var btn = document.getElementById("togglemusic");
+
+  if (!btn) return;
+
+  if (game.backgroundMusic && game.backgroundMusic.paused) {
+    btn.classList.remove("sound-on");
+    btn.classList.add("sound-off");
+  } else {
+    btn.classList.remove("sound-off");
+    btn.classList.add("sound-on");
+  }
+},
 
   hideScreens: function () {
     var screens = document.getElementsByClassName("gamelayer");
@@ -793,7 +795,10 @@ var game = {
 
       if (!game.currentHero) {
         game.currentHero = game.heroes[game.heroes.length - 1];
-        var heroStartX = 180, heroStartY = 180;
+
+        var heroStartX = game.slingshotX + 20;
+        var heroStartY = game.slingshotY + 20;
+
         game.currentHero.SetPosition({ x: heroStartX / box2d.scale, y: heroStartY / box2d.scale });
         game.currentHero.SetLinearVelocity({ x: 0, y: 0 });
         game.currentHero.SetAngularVelocity(0);
@@ -864,7 +869,7 @@ var game = {
     if (game.mode == "fired") {
       var heroX = game.currentHero.GetPosition().x * box2d.scale;
       game.panTo(heroX);
-      if ( !game.currentHero.IsAwake() || heroX < 0 || heroX > game.currentLevel.foregroundImage.width) {
+      if ( !game.currentHero.IsAwake() || heroX < 0 || heroX > game.currentLevel.backgroundImage.width) {
         box2d.world.DestroyBody(game.currentHero);
         game.currentHero = undefined;
         game.mode = "load-next-hero";
@@ -901,7 +906,7 @@ var game = {
       if (entity) {
         var entityX = body.GetPosition().x * box2d.scale;
         if (
-          entityX < 0 || entityX > game.currentLevel.foregroundImage.width ||
+          entityX < 0 || entityX > game.currentLevel.backgroundImage.width ||
           (entity.health !== undefined && entity.health <= 0)
         ) {
           box2d.world.DestroyBody(body);
@@ -953,17 +958,17 @@ var game = {
       game.handleGameLogic();
       game.removeDeadBodies();
 
-      if (game.currentLevel && game.currentLevel.backgroundImage && game.currentLevel.foregroundImage) {
-        game.context.drawImage(
-          game.currentLevel.backgroundImage,
-          game.offsetLeft / 4, 0, game.canvas.width, game.canvas.height,
-          0, 0, game.canvas.width, game.canvas.height
-        );
+      if (game.currentLevel && game.currentLevel.backgroundImage) {
 
         game.context.drawImage(
-          game.currentLevel.foregroundImage,
-          game.offsetLeft, 0, game.canvas.width, game.canvas.height,
-          0, 0, game.canvas.width, game.canvas.height
+          game.currentLevel.backgroundImage,
+          game.offsetLeft, 0,
+          game.canvas.width,
+          game.canvas.height,
+          0,
+          0,
+          game.canvas.width,
+          game.canvas.height
         );
       }
 

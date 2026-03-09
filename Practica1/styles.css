@@ -1,9 +1,13 @@
+/* BASE */
+
 body {
     background: #000900;
     user-select: none;
     -webkit-touch-callout: none !important;
     overflow: hidden;
 }
+
+/* LAYOUT GENERAL */
 
 #wrapper {
     position: absolute;
@@ -16,10 +20,7 @@ body {
 #gamecontainer {
     width: 640px;
     height: 480px;
-    background: url("images/principal.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background: url("images/principal.jpg") center/cover no-repeat;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -34,120 +35,219 @@ body {
     display: none;
 }
 
-/* Game Starting Menu Screen */
+/* START SCREEN */
+
 #gamestartscreen {
     padding-top: 250px;
     text-align: center;
 }
+
 #gamestartscreen img {
     margin: 10px;
     cursor: pointer;
 }
 
-/* Level Selection Screen */
+/* LEVEL SELECT SCREEN */
+
 #levelselectscreen {
-    padding-top: 150px;
-    padding-left: 50px;
+    width: 640px;
+    height: 480px;
+    background: url("images/backgrounds/levels-background.jpg") center/cover no-repeat;
 }
+
+#levelButtons {
+    margin: 10px;
+}
+
+/* Botones de nivel */
+
 #levelselectscreen input {
     margin: 20px;
     cursor: pointer;
-    background: url("images/icons/levels1.jpg") no-repeat;
+    background: rgb(18, 15, 199);
     color: yellow;
     font-size: 20px;
     width: 64px;
     height: 64px;
-    border: 0;
+    border-radius: 30px;
+    border: 4px solid black;
     outline: 0;
+    transition: all 0.15s;
 }
 
-/* Loading Screen */
+#levelselectscreen input:hover {
+    background: #2a55ff;
+    transform: translateY(-2px);
+}
+
+#levelselectscreen input:active {
+    transform: translateY(2px);
+}
+
+/* DIFFICULTY PANEL */
+
+#difficultyPanel {
+    margin: 10px;
+    padding: 8px;
+}
+
+#difficultyPanel span {
+    font-size: 22px;
+    font-weight: bold;
+    color: yellow;
+    text-shadow: 2px 2px 0 black;
+}
+
+/* Botones dificultad */
+
+#difficultyPanel button {
+    background: #1a3cc7;
+    color: yellow;
+    font-weight: bold;
+    font-size: 18px;
+    border: 4px solid black;
+    border-radius: 12px;
+    padding: 6px 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.4);
+    transition: all 0.15s;
+}
+
+#difficultyPanel button:hover {
+    background: #2a55ff;
+    transform: translateY(-2px);
+}
+
+#difficultyPanel button:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.5);
+}
+
+/* Indicador dificultad */
+
+.difficultyLabel {
+    color: white;
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 1px;
+    padding: 4px 10px;
+    border: 2px solid white;
+    border-radius: 8px;
+    background: rgba(0,0,0,0.35);
+}
+
+.difficulty-easy  { border-color:#7CFC00; }
+.difficulty-normal{ border-color:#FFD700; }
+.difficulty-hard  { border-color:#FF4500; }
+
+/* LOADING SCREEN */
+
 #loadingscreen {
     background: rgba(100,100,100,0.5);
 }
+
 #loadingmessage {
     margin-top: 400px;
     text-align: center;
+
     height: 48px;
+
     color: white;
+
     background: url("images/loader.gif") no-repeat center;
+
     font: 12px Arial;
 }
 
-#score{
-    position: absolute;
-    top: 5%;
-    right: 5%;
-}
-
 /* HUD */
-#scorescreen{
-  position:absolute;
-  top:0; left:0;
-  width:100%;
-  height:64px;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:10px 14px;
-  box-sizing:border-box;
+
+#scorescreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    box-sizing: border-box;
 }
 
-/* Iconos (los dos img) */
-#scorescreen img{
-  width:48px;
-  height:48px;
-  object-fit:contain;
-  cursor:pointer;
-  opacity:0.9;
-  display:block;              /* evita baseline raro */
+/* Iconos HUD */
+
+#scorescreen img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    cursor: pointer;
+    opacity: 0.9;
+    display: block;
 }
-#scorescreen img:hover{ opacity:1; }
 
-/* Botón pause como icono redondo y alineado */
-#pausebtn.hudbtn{
-  width:48px;
-  height:48px;
-  display:inline-flex;        /* centra el símbolo */
-  align-items:center;
-  justify-content:center;
-
-  padding:0;
-  margin:0;
-  border:0;
-  border-radius:999px;
-
-  background: rgba(45, 150, 95, 0.85);
-  color:#fff;
-  font-size:22px;
-  font-weight:900;
-  line-height:1;              /* clave para que no “baje” */
-
-  cursor:pointer;
-  opacity:0.95;
-  box-shadow: 0 2px 0 rgba(0,0,0,0.35);
+#scorescreen img:hover {
+    opacity: 1;
 }
-#pausebtn.hudbtn:hover{ opacity:1; filter:brightness(1.05); }
-#pausebtn.hudbtn:active{ transform: translateY(1px); }
 
-/* Score a la derecha */
+/* Score */
+
 #score{
-  margin-left:auto;
+  position:absolute;
+  top:10px;
+  right:20px;
   font-size:32px;
   color:white;
   text-shadow:0 2px 0 rgba(0,0,0,0.6);
 }
 
-/* Ending Screen */
+/* Botón pausa */
+
+#scorescreen .hudbtn{
+  width:35px;
+  height:35px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  border:0;
+  background: #2a55ff;
+  color:white;
+  font-size:22px;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 2px 0 rgba(0,0,0,0.35);
+  transition:all 0.15s;
+  margin: 5px;
+}
+
+#scorescreen .hudbtn:hover{
+  filter:brightness(1.1);
+}
+
+#scorescreen .hudbtn:active{
+  transform:translateY(1px);
+}
+
+#pausebtn.hudbtn:hover {
+    opacity: 1;
+    filter: brightness(1.05);
+}
+
+#pausebtn.hudbtn:active {
+    transform: translateY(1px);
+}
+
+/* ENDING SCREEN */
+
 #endingscreen {
     background: rgba(1,1,1,0.5);
 }
+
 #endingscreen div {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    transform-origin: center center;
     height: 250px;
     width: 330px;
     border: 1px solid gray;
@@ -156,60 +256,101 @@ body {
     padding: 10px 30px 40px 50px;
     text-align: left;
 }
-.endingoption{
+
+.endingoption {
     font: 20px "Comic Sans MS";
     text-shadow: 0 0 2px black;
     color: white;
     cursor: pointer;
 }
+
 #endingscreen p img {
     top: 10px;
     position: relative;
     padding-right: 20px;
 }
-#endingmessage{
+
+#endingmessage {
     font: 25px "Comic Sans MS";
     text-shadow: 0 0 2px black;
     color: yellow;
     text-align: center;
 }
 
-.hudbtn{
-  font: 14px Arial, sans-serif;
-  padding: 4px 8px;
-  margin-left: 6px;
-  cursor: pointer;
-}
-.hudbtn{
-  font: 14px Arial, sans-serif;
-  padding: 4px 8px;
-  margin-left: 6px;
-  cursor: pointer;
-}
-#difficultyPanel{
-  margin: 10px;
-  padding: 8px;
-}
-#levelButtons{
-  margin: 10px;
-}
-#difficultyPanel{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin: 12px;
+.sound-on::before{
+  content:"🔊";
 }
 
-.difficultyLabel{
-  color: white;
-  font-weight: 800;
-  font-size: 20px;
-  letter-spacing: 1px;
-  padding: 4px 10px;
-  border: 2px solid white;
-  border-radius: 8px;
-  background: rgba(0,0,0,0.35);
+.sound-off::before{
+  content:"🔇";
 }
-.difficulty-easy  { border-color:#7CFC00; }
-.difficulty-normal{ border-color:#FFD700; }
-.difficulty-hard  { border-color:#FF4500; }
+
+.playbtn{
+  margin-top:20px;
+
+  font-size:28px;
+  padding:12px 28px;
+
+  background:linear-gradient(#5cd65c,#2faa2f);
+  color:white;
+
+  border:4px solid black;
+  border-radius:40px;
+
+  font-weight:bold;
+  letter-spacing:2px;
+
+  cursor:pointer;
+
+  box-shadow:0 6px 0 rgba(0,0,0,0.4);
+
+  transition:all 0.15s;
+}
+
+.playbtn:hover{
+  transform:translateY(-3px);
+  filter:brightness(1.1);
+}
+
+.playbtn:active{
+  transform:translateY(3px);
+  box-shadow:0 2px 0 rgba(0,0,0,0.5);
+}
+
+.endingbtn{
+  display:block;
+  width:260px;
+
+  margin:12px auto;
+  padding:10px 20px;
+
+  font-size:18px;
+  font-weight:bold;
+
+  color:white;
+  background:linear-gradient(#5cd65c,#2faa2f);
+
+  border:4px solid black;
+  border-radius:30px;
+
+  cursor:pointer;
+
+  box-shadow:0 5px 0 rgba(0,0,0,0.4);
+
+  transition:all 0.15s;
+}
+
+.endingbtn:hover{
+  transform:translateY(-2px);
+  filter:brightness(1.1);
+}
+
+.endingbtn:active{
+  transform:translateY(3px);
+  box-shadow:0 2px 0 rgba(0,0,0,0.5);
+}
+
+#playnextlevel{
+  background:linear-gradient(#ffd84d,#ff9f1a);
+  color:black;
+}
