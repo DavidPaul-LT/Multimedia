@@ -540,7 +540,6 @@ var game = {
   animationFrame: undefined,
   backgroundMusic: null,
   slingshotReleasedSound: null,
-  bounceSound: null,
   breakSound: null,
 
   difficulty: "normal",
@@ -634,7 +633,6 @@ var game = {
   loadSounds: function (onload) {
     game.backgroundMusic = loader.loadSound("audio/Sonic");
     game.slingshotReleasedSound = loader.loadSound("audio/released");
-    game.bounceSound = loader.loadSound("audio/bounce");
     game.breakSound = {
       glass: loader.loadSound("audio/glassbreak"),
       wood: loader.loadSound("audio/woodbreak")
@@ -796,12 +794,19 @@ var game = {
       if (!game.currentHero) {
         game.currentHero = game.heroes[game.heroes.length - 1];
 
-         var heroStartX = 180, heroStartY = 180;
+          var heroStartX = game.slingshotX + 20;
+          var heroStartY = game.slingshotY + 20;
 
-        game.currentHero.SetPosition({ x: heroStartX / box2d.scale, y: heroStartY / box2d.scale });
-        game.currentHero.SetLinearVelocity({ x: 0, y: 0 });
-        game.currentHero.SetAngularVelocity(0);
-        game.currentHero.SetAwake(true);
+          game.currentHero.SetPosition({
+              x: heroStartX / box2d.scale,
+              y: heroStartY / box2d.scale
+          });
+
+          game.currentHero.SetLinearVelocity({ x: 0, y: 0 });
+          game.currentHero.SetAngularVelocity(0);
+          game.currentHero.SetLinearDamping(0);
+          game.currentHero.SetAngularDamping(0);
+          game.currentHero.SetAwake(false);
       } else {
         game.panTo(game.slingshotX);
 
