@@ -796,8 +796,7 @@ var game = {
       if (!game.currentHero) {
         game.currentHero = game.heroes[game.heroes.length - 1];
 
-        var heroStartX = game.slingshotX + 20;
-        var heroStartY = game.slingshotY + 20;
+         var heroStartX = 180, heroStartY = 180;
 
         game.currentHero.SetPosition({ x: heroStartX / box2d.scale, y: heroStartY / box2d.scale });
         game.currentHero.SetLinearVelocity({ x: 0, y: 0 });
