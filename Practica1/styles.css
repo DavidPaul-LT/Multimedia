@@ -16,9 +16,10 @@ body {
 #gamecontainer {
     width: 640px;
     height: 480px;
-    background: url("images/splashscreenwide.png");
+    background: url("images/principal.jpg");
     background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
     position: absolute;
     left: 50%;
     top: 50%;

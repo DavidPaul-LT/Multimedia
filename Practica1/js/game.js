@@ -225,8 +225,8 @@ var mouse = {
 var levels = {
     data: [
         {
-            foreground: "desert-foreground",
             background: "clouds-background",
+            foreground: "desert-foreground",
             entities: [
                 { type: "ground", name: "dirt", x: 500, y: 440, width: 1000, height: 20, isStatic: true },
                 { type: "ground", name: "wood", x: 190, y: 390, width: 30, height: 80, isStatic: true },
@@ -239,7 +239,66 @@ var levels = {
                 { type: "hero", name: "orange", x: 80, y: 405 },
                 { type: "hero", name: "apple", x: 140, y: 405 }
             ]
-        }
+        },
+        {
+            background: "clouds-background",
+            foreground: "desert-foreground",
+            entities: [
+                { type: "ground", name: "dirt", x: 500, y: 440, width: 1000, height: 20, isStatic: true },
+                { type: "ground", name: "wood", x: 190, y: 390, width: 30, height: 80, isStatic: true },
+                { type: "block", name: "wood", x: 620, y: 380, angle: 0, width: 10, height: 25 },
+                { type: "block", name: "wood", x: 680, y: 380, angle: 0, width: 10, height: 25 },
+                { type: "block", name: "wood", x: 650, y: 320, angle: 0, width: 120, height: 5 },
+                
+
+                { type: "villain", name: "fries", x: 650, y: 320, calories: 420 },
+
+                { type: "block", name: "wood", x: 800, y: 380, angle: 90, width: 100, height: 25 },
+                { type: "villain", name: "burger", x: 800, y: 250, calories: 590 },
+
+                { type: "hero", name: "orange", x: 80, y: 405 },
+                { type: "hero", name: "apple", x: 140, y: 405 },
+
+                
+            ]
+        },
+    {
+        background: "clouds-background",
+            foreground: "desert-foreground",
+        entities: [
+          // Suelo base
+          { type: "ground", name: "dirt", x: 500, y: 440, width: 1000, height: 20, isStatic: true },
+          { type: "ground", name: "wood", x: 190, y: 390, width: 30, height: 80, isStatic: true },
+          // Plataformas principales para sostener estructuras
+          { type: "ground", name: "wood", x: 350, y: 420, width: 150, height: 20},
+          // Cubo izquierdo: paredes y techo
+          { type: "block", name: "wood", x: 320, y: 380, width: 20, height: 80 }, // pared izquierda
+          { type: "block", name: "wood", x: 380, y: 380, width: 20, height: 80 }, // pared derecha
+          { type: "block", name: "wood", x: 350, y: 340, width: 80, height: 20 }, // techo
+
+          // Villano dentro del cubo izquierdo
+          { type: "villain", name: "fries", x: 350, y: 370, calories: 420 },
+
+          // Cubo derecho: paredes y techo
+          { type: "block", name: "wood", x: 670, y: 380, width: 5, height: 80 }, // pared izquierda
+          { type: "block", name: "wood", x: 730, y: 380, width: 5, height: 80 }, // pared derecha
+          { type: "block", name: "wood", x: 700, y: 340, width: 80, height: 10 }, // techo
+
+          // Villano dentro del cubo derecho
+          { type: "villain", name: "fries", x: 700, y: 370, calories: 420 },
+
+          // Puerta central reforzada con villano principal
+          { type: "ground", name: "wood", x: 500, y: 390, width: 140, height: 20 },
+          { type: "block", name: "wood", x: 500, y: 350, width: 140, height: 60 }, // pared central
+          { type: "villain", name: "burger", x: 500, y: 320, calories: 590 },
+
+          // Héroes (frutas)
+          { type: "hero", name: "orange", x: 80, y: 405 },
+          { type: "hero", name: "apple", x: 140, y: 405 },
+          { type: "hero", name: "strawberry", x: 200, y: 405 },
+          { type: "hero", name: "orange", x: 260, y: 405 }
+        ]
+    }
     ],
 
     init: function() {
@@ -307,11 +366,11 @@ var entities = {
         "glass": { fullHealth: 100, density: 2.4, friction: 0.4, restitution: 0.15 },
         "wood": { fullHealth: 500, density: 0.7, friction: 0.4, restitution: 0.4 },
         "dirt": { density: 3.0, friction: 1.5, restitution: 0.2 },
-        "orange": { shape: "circle", fullHealth: 400, radius: 20, density: 1, friction: 0.5, restitution: 0.4 },
-        "apple": { shape: "circle", fullHealth: 400, radius: 20, density: 1, friction: 0.5, restitution: 0.4 },
-        "strawberry": { shape: "circle", fullHealth: 400, radius: 18, density: 1, friction: 0.5, restitution: 0.4 },
-        "burger": { shape: "circle", fullHealth: 40, radius: 23, density: 1, friction: 0.5, restitution: 0.4 },
-        "fries": { shape: "circle", fullHealth: 30, radius: 18, density: 1, friction: 0.5, restitution: 0.4 },
+        "orange": { shape: "circle", fullHealth: 4000, radius: 20, density: 1, friction: 0.5, restitution: 0.4 },
+        "apple": { shape: "circle", fullHealth: 4000, radius: 20, density: 1, friction: 0.5, restitution: 0.4 },
+        "strawberry": { shape: "circle", fullHealth: 4000, radius: 18, density: 1, friction: 0.5, restitution: 0.4 },
+        "burger": { shape: "circle", fullHealth: 30, radius: 23, density: 1, friction: 0.5, restitution: 0.4 },
+        "fries": { shape: "circle", fullHealth: 15, radius: 18, density: 1, friction: 0.5, restitution: 0.4 },
         "sodacan": { shape: "circle", fullHealth: 50, radius: 20, density: 1, friction: 0.5, restitution: 0.4 }
     },
 
@@ -663,8 +722,9 @@ var game = {
   showEndingScreen: function () {
     var playNextLevel = document.getElementById("playnextlevel");
     var endingMessage = document.getElementById("endingmessage");
-
+    
     if (game.mode === "level-success") {
+      
       if (game.currentLevel.number < levels.data.length - 1) {
         endingMessage.innerHTML = "Level Complete. Well Done!!!";
         playNextLevel.style.display = "block";
@@ -803,8 +863,7 @@ var game = {
     if (game.mode == "fired") {
       var heroX = game.currentHero.GetPosition().x * box2d.scale;
       game.panTo(heroX);
-
-      if (!game.currentHero.IsAwake() || heroX < 0 || heroX > game.currentLevel.foregroundImage.width) {
+      if ( !game.currentHero.IsAwake() || heroX < 0 || heroX > game.currentLevel.foregroundImage.width) {
         box2d.world.DestroyBody(game.currentHero);
         game.currentHero = undefined;
         game.mode = "load-next-hero";
